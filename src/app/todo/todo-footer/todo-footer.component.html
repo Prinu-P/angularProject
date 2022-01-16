@@ -1,0 +1,8 @@
+<footer class="footer">
+    <p>{{ todosLeft }} {{ todosLeft <= 1 ? 'item' : 'items' }} left</p>
+    <p>Total Todos : {{showCount.total}}</p>
+    <p>Completed Todos : {{showCount.completedCount}}</p>
+    <p>Incomplete Todos : {{showCount.incompletedCount}}</p>
+    <ng-content></ng-content>
+    <button mat-raised-button color="primary" (click)="handleClick()">Create Todo</button>
+</footer>

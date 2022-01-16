@@ -1,0 +1,19 @@
+<mat-form-field class="full-width">
+  <input matInput name="todo-title" [(ngModel)]="todo.title" ng-disabled="isDisable" />
+  <mat-slide-toggle [checked]="todo.isCompleted" (change)="todo.isCompleted = !todo.isCompleted">
+    Toggle me! {{todo.isCompleted ? "Completed" :"Incompleted"}}
+  </mat-slide-toggle>
+  <!-- <button type="button" (click)="Edit(todo.id)">Edit</button> </td> -->
+  <button *ngIf="enableEdit && enableEditIndex == rowIndex" (click)="enableEdit=false"
+    class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+  <button *ngIf="enableEdit && enableEditIndex == rowIndex" id="saveBtn" class="btn page-primary-action-btn"
+    (click)="saveSegment()" type="submit">Save</button>
+  <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, rowIndex)">
+    Edit
+  </a>
+
+  <a href="#" class="table-row-action edit-action" (click)="deleteMethod($event, rowIndex)">
+    Delete
+  </a>
+
+</mat-form-field>
