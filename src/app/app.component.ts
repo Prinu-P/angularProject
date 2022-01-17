@@ -15,14 +15,14 @@ export class AppComponent implements AfterViewInit{
   public today = new Date();
   public price = 999;
 
-  @ViewChild('username', { read: ElementRef })
-  userName!: ElementRef<HTMLInputElement>;
+  // @ViewChild('username', { read: ElementRef })
+  // userName!: ElementRef<HTMLInputElement>;
 
   
 
   ngAfterViewInit(): void {
-    console.log(this.userName);
-    this.userName.nativeElement.focus();
+    // console.log(this.userName);
+    // this.userName.nativeElement.focus();
   }
 
 

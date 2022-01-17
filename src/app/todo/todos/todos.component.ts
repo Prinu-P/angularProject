@@ -17,13 +17,21 @@ export class TodosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.calculateCount();
   }
 
   onCreateNewTodo() {
-    let completed = 0;
-    let incompleted = 0;
+   
     this.todos.push(this.newTodo);
     console.log(this.todos);
+    this.calculateCount();
+    this.newTodo = new Todo();
+  }
+
+
+  calculateCount(){
+    let completed = 0;
+    let incompleted = 0;
     for(let i =0;i<this.todos.length;i++){
       if(this.todos[i].isCompleted === true){
         completed = completed +1;
@@ -33,8 +41,6 @@ export class TodosComponent implements OnInit {
     }
 
     this.showCount = {total : this.todos.length,completedCount : completed,incompletedCount: incompleted};
-
-    this.newTodo = new Todo();
   }
 
   onError(event){

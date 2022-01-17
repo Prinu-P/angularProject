@@ -1,10 +1,13 @@
 <section class="todos">
   <ul class="todo-list" *ngIf="todos.length > 0; else noTodoBlock">
     <li class="todo-item" *ngFor="let todo of todos; let i = index;">
-      <app-todo-item [todo]="todo" (deleteRow)= "deletefromList($event)" [rowIndex] = "i"></app-todo-item>
+      <app-todo-item [todo]="todo" (deleteRow)= "deletefromList($event)" 
+      
+      (toggleEventChangeCount) ="callCount()" [rowIndex] = "i"></app-todo-item>
     </li>
   </ul>
   <ng-template #noTodoBlock>
     <p>No todo. Create new one using the form below</p>
   </ng-template>
 </section> 
+
