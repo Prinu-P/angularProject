@@ -1,7 +1,7 @@
 <section class="todoapp">
     <app-todo-header [appTitle]="title" [newTodo]="newTodo" (createNewTodo)="onCreateNewTodo()" 
      [showError] = "showErrMsg"></app-todo-header>
-    <app-todo-list [todos]="todos" (countToFooter)="calculateCount()"></app-todo-list>
+    <app-todo-list [todos]="todos" (countToFooter)="calculateCount($event)"></app-todo-list>
     <app-todo-footer [newtitle]="newTodo.title" [todosLeft]="todos.length" [showCount]= "showCount"
     (createNewTodo)="onCreateNewTodo()" (showErrorMsg)="onError($event)">
     <!-- <h1> hi from footer</h1> content   yy-->

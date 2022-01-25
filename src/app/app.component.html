@@ -1,18 +1,4 @@
-<app-todos></app-todos>
-
-<!-- <p>today is {{today | date:'YYYY-MM-dd'}}</p>
-<p>example of currency pip {{ price | currency:'EUR':'symbol':'4.2' }}</p>
-
-
-<input type="text" placeholder="Write your name" name="name" id="username" #username>
-<button (click)="getName(username.id)">Get name</button>
-<app-card>
-    <div cardHead>
-        <h3>Card Header</h3>
-    </div>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo, error optio. Soluta doloremque maxime dignissimos placeat necessitatibus aliquam accusamus, facilis enim asperiores quis unde laborum fugit repudiandae accusantium natus obcaecati.</p>
-    <div cardFooter>
-        <button>Cancel</button>
-        <button>Ok</button>
-    </div>
-</app-card> -->
+<a [routerLink]="['/todos']">Todos</a>
+<a [routerLink]="['/auth/login']">Login</a>
+<a [routerLink]="['/auth/register']">Sign Up</a>
+<router-outlet></router-outlet>

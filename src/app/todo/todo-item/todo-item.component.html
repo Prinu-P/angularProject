@@ -10,7 +10,7 @@
   position: absolute;
   top: 15px;">
   <button type ="button" *ngIf="enableEdit && enableEditIndex == rowIndex" id="saveBtn" class="btn btn-primary"
-  (click)="saveSegment(rowIndex)" type="submit">Save</button> &nbsp;&nbsp;&nbsp;
+  (click)="saveSegment(todo._id)" type="submit">Save</button> &nbsp;&nbsp;&nbsp;
   <button  type ="button" *ngIf="enableEdit && enableEditIndex == rowIndex"
     class="btn btn-secondary" (click)="cancel()">Cancel</button>
   </div>
@@ -18,11 +18,11 @@
     <div style="right: 0;
     position: absolute;
     top: 15px;">
-  <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, rowIndex)">
+  <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod(rowIndex,todo._id)">
     Edit
   </a>
  &nbsp;&nbsp;&nbsp;
-  <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="deleteMethod($event, rowIndex)">
+  <a href="#" class="table-row-action edit-action" *ngIf="!enableEdit" (click)="deleteMethod(rowIndex,todo._id)">
     Delete
   </a>
 </div>

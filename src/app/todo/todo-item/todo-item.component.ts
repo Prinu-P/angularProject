@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalDialogComponent } from 'src/app/shared/dialog/modal-dialog/modal-dialog.component';
 import { Todo } from '../models/todo';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { TodoService } from '../todo.service';
+import { TodoBehaviourService } from '../todoBS.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -19,10 +21,12 @@ export class TodoItemComponent implements OnInit {
   @Input() rowIndex!: any;
   
   closeResult: string;
-  @Output() deleteRow: EventEmitter<number> = new EventEmitter();
+  @Output() deleteRow: EventEmitter<any> = new EventEmitter<{rowIndex:number,id:number}>();
   @Output() toggleEventChangeCount: EventEmitter<null> = new EventEmitter();
 
   constructor(public dialog: MatDialog,
+    private todoService:TodoService,
+    private todoBehavourService: TodoBehaviourService
 
   ) { }
 
@@ -35,10 +39,9 @@ export class TodoItemComponent implements OnInit {
   //   this.body=user.body;
   //   }
 
-  enableEditMethod(e, i) {
+  enableEditMethod( i: number,id: string) {
     this.enableEdit = true;
     this.enableEditIndex = i;
-    console.log(i, e);
     this.disableTextbox = false;
   }
 
@@ -46,11 +49,13 @@ export class TodoItemComponent implements OnInit {
     this.enableEdit = false;
     this.disableTextbox = true;
   }
-  saveSegment() {
+  saveSegment(id:string) {
     this.enableEdit = false;
     this.disableTextbox = true;
-    this.todo.title = this.todo.title;
-    this.todo.isCompleted = this.todo.isCompleted;;
+    this.todoService.editTodo(this.todo, id).subscribe();
+
+    // this.todo.title = this.todo.title;
+    // this.todo.isCompleted = this.todo.isCompleted;
     this.openDialog();
   }
 
@@ -63,7 +68,7 @@ export class TodoItemComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalDialogComponent, {
       width: '250px',
-      // data: {name: this.name, animal: this.animal},
+      data: "Data Saved Successfully",
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -72,7 +77,8 @@ export class TodoItemComponent implements OnInit {
     });
   }
 
-  deleteMethod(e, i) {
+  deleteMethod(rowIndex:number ,id:string) {
+    console.log(id);
     Swal.fire({
       title: 'Are you sure u want to delete?',
       showDenyButton: true,
@@ -82,10 +88,12 @@ export class TodoItemComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.deleteRow.emit(this.rowIndex);
+        this.deleteRow.emit({rowIndex:rowIndex,id:id});
+
+
         const dialogRef = this.dialog.open(ModalDialogComponent, {
           width: '250px',
-          // data: {name: this.name, animal: this.animal},
+          data: "Todo Deleted Succesfully",
         });
 
         dialogRef.afterClosed().subscribe(result => {

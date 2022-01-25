@@ -1,0 +1,11 @@
+<div class="login">
+    <h2 class="login-header">
+        Login
+    </h2>
+    <form class="login-container" [formGroup]="loginForm" novalidate>
+
+        <input type ="email" formControlName="email" placeholder="Email">
+        <input type="password" formControlName="password" placeholder="Password">
+        <input type="submit">
+    </form>
+</div>
